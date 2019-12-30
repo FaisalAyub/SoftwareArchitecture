@@ -29,7 +29,8 @@ namespace CORE.API
         {
             services.ConfigureCors();
             services.ConfigureIISIntegration();
-            services.ConfigureMySqlContext(Configuration);
+            services.ConfigureMsSqlContext(Configuration);
+            services.ConfigureRepositoryWrapper();
             services.AddControllers();
         }
 

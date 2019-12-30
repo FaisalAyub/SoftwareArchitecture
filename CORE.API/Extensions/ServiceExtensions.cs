@@ -1,4 +1,6 @@
-﻿using Core.Data;
+﻿using AutoMapper;
+using Core.Application;
+using Core.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,11 +33,17 @@ namespace CORE.API.Extensions
             });
         }
 
-        public static void ConfigureMySqlContext(this IServiceCollection services, IConfiguration config)
+        public static void ConfigureMsSqlContext(this IServiceCollection services, IConfiguration config)
         {
             services.AddDbContext<RepositoryContext>(options =>
              options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
         }
 
+        public static void ConfigureRepositoryWrapper(this IServiceCollection services)
+        {
+            services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+         
+        }
     }
 }
