@@ -15,15 +15,16 @@ namespace Core.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0")
+                .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Core.Data.Entities.Account", b =>
                 {
-                    b.Property<Guid>("AccountId")
+                    b.Property<int>("AccountId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AccountType")
                         .IsRequired()
@@ -32,8 +33,8 @@ namespace Core.Data.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("OwnerId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
 
                     b.HasKey("AccountId");
 
@@ -42,11 +43,237 @@ namespace Core.Data.Migrations
                     b.ToTable("Accounts");
                 });
 
+            modelBuilder.Entity("Core.Data.Entities.Administration.RecordType", b =>
+                {
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdentifierExpression")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PKColumn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PageID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("RepeatableInd")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SectionID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("XPathRoot")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("RecordTypes");
+                });
+
+            modelBuilder.Entity("Core.Data.Entities.Administration.Validation", b =>
+                {
+                    b.Property<decimal>("ID")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("AssemblyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AssociatedTabID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ComparisonFieldXPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Condition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ControlType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DefaultValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ErrorMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FieldID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FocusControlID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("FocusableInd")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FunctionName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GroupID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HighlightControlID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Label")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LookupID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("RangeFromValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("RangeToValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("RecordTypeID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RegularExpression")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SectionName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("SequenceNo")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("Severity")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpectrumEditID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<byte>("Type")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("XPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("XPathExpression")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Validations");
+                });
+
+            modelBuilder.Entity("Core.Data.Entities.Administration.ValidationParameter", b =>
+                {
+                    b.Property<decimal>("ValidationID")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("SequenceNo")
+                        .HasColumnType("tinyint");
+
+                    b.Property<decimal?>("ValidationID1")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("XPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ValidationID");
+
+                    b.HasIndex("ValidationID1");
+
+                    b.ToTable("ValidationParameters");
+                });
+
+            modelBuilder.Entity("Core.Data.Entities.Application.ValidationError", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ID")
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ApplicationID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AssociatedTabID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ControlType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CurrentValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ErrorMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FieldID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FocusControlID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("FocusableInd")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("GroupID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HighlightControlID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Identifier")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Label")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PKValue")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RecordTypeID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("RepeatableInd")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SectionName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Severity")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ValidationID")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("validationErrors");
+                });
+
             modelBuilder.Entity("Core.Data.Entities.Owner", b =>
                 {
-                    b.Property<Guid>("OwnerId")
+                    b.Property<int>("OwnerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -73,6 +300,13 @@ namespace Core.Data.Migrations
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Data.Entities.Administration.ValidationParameter", b =>
+                {
+                    b.HasOne("Core.Data.Entities.Administration.Validation", null)
+                        .WithMany("ValidationParameters")
+                        .HasForeignKey("ValidationID1");
                 });
 #pragma warning restore 612, 618
         }

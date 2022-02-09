@@ -6,7 +6,8 @@
 bin/Debug/netcoreapp3.0
 obj
 /.vs/CORE.API
-/Core.Applications/bin/Debug/netstandard2.0
-/Core.Dataa/bin/Debug/netstandard2.0
-/MWCIA.OAR.Validations/bin/Debug/netstandard2.0
+/Core.Application/bin/Debug/netstandard2.0
+/Core.Data/bin/Debug/netstandard2.0
 /Core.Utilities/bin/Debug/netstandard2.0
+bin
+obj

@@ -8,6 +8,6 @@ namespace Core.Application.Services.Validations
 {
   public  interface IValidationRepository : IRepositoryBase<Validation>
     {
-
+        IEnumerable<Validation> GetValidations();
     }
 }

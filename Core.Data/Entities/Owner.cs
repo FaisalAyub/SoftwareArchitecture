@@ -7,7 +7,8 @@ namespace Core.Data.Entities
 {
    public class Owner
     {
-        public Guid OwnerId { get; set; }
+        [Key]
+        public int OwnerId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         [StringLength(60, ErrorMessage = "Name can't be longer than 60 characters")]

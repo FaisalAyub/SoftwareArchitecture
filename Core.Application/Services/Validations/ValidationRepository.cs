@@ -21,5 +21,7 @@ namespace Core.Application.Services.Validations
         {
             return GetAll().Include(x=>x.ValidationParameters).Where(t => t.Status).ToList();
         }
+
+       
     }
 }

@@ -8,7 +8,8 @@ namespace Core.Data.Entities
 {
   public  class Account
     {
-        public Guid AccountId { get; set; }
+        [Key]
+        public int AccountId { get; set; }
 
         [Required(ErrorMessage = "Date created is required")]
         public DateTime DateCreated { get; set; }
@@ -18,7 +19,7 @@ namespace Core.Data.Entities
 
         [Required(ErrorMessage = "Owner Id is required")] 
         [ForeignKey(nameof(Owner))]
-        public Guid OwnerId { get; set; }
+        public int OwnerId { get; set; }
         public Owner Owner { get; set; }
     }
 }

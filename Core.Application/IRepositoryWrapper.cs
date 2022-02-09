@@ -1,5 +1,6 @@
 ﻿using Core.Application.Services.Accounts;
 using Core.Application.Services.Owners;
+using Core.Application.Services.RecordTypes;
 using Core.Application.Services.Validations;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace Core.Application
         IOwnerRepository Owner { get; }
         IAccountRepository Account { get; }
         IValidationRepository Validation { get; }
+        IRecordTypeRepository RecordType { get; }
         void Save();
     }
 }

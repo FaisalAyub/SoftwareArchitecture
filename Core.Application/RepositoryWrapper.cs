@@ -4,6 +4,7 @@ using System.Text;
 using Core.Application.Services.Accounts;
 using Core.Application.Services.AccountS;
 using Core.Application.Services.Owners;
+using Core.Application.Services.RecordTypes;
 using Core.Application.Services.Validations;
 using Core.Data;
 
@@ -16,6 +17,9 @@ namespace Core.Application
         private IOwnerRepository _ownerRepository;
         private IAccountRepository _accountRepository;
         private IValidationRepository _validationRepository;
+
+        private IRecordTypeRepository _recordTypeRepository;
+
 
 
         public IOwnerRepository Owner
@@ -53,7 +57,19 @@ namespace Core.Application
                 return _validationRepository;
             }
         }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+
+        public IRecordTypeRepository RecordType {
+
+            get
+            {
+                if (_recordTypeRepository == null)
+                {
+                    _recordTypeRepository = new RecordTypeRepository(_repositoryContext);
+                }
+                return _recordTypeRepository;
+            }
+        }
+
         public void Save()
         {
             _repositoryContext.SaveChanges();

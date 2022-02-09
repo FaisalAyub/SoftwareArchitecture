@@ -1,5 +1,0 @@
-E:\Core Application\CORE.API\Core.Data\bin\Debug\netcoreapp3.0\Core.Data.deps.json
-E:\Core Application\CORE.API\Core.Data\bin\Debug\netcoreapp3.0\Core.Data.dll
-E:\Core Application\CORE.API\Core.Data\obj\Debug\netcoreapp3.0\Core.Data.csprojAssemblyReference.cache
-E:\Core Application\CORE.API\Core.Data\obj\Debug\netcoreapp3.0\Core.Data.AssemblyInfoInputs.cache
-E:\Core Application\CORE.API\Core.Data\obj\Debug\netcoreapp3.0\Core.Data.AssemblyInfo.cs
