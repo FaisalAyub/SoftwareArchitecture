@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace CORE.API
 {
@@ -31,6 +32,12 @@ namespace CORE.API
             services.ConfigureIISIntegration();
             services.ConfigureMsSqlContext(Configuration);
             services.ConfigureRepositoryWrapper();
+
+            services.AddMvc().AddNewtonsoftJson(opt =>
+            {
+                opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                //opt.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.All;
+            });
             services.AddControllers();
         }
 

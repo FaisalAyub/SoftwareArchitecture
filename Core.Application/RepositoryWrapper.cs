@@ -4,8 +4,6 @@ using System.Text;
 using Core.Application.Services.Accounts;
 using Core.Application.Services.AccountS;
 using Core.Application.Services.Owners;
-using Core.Application.Services.RecordTypes;
-using Core.Application.Services.Validations;
 using Core.Data;
 
 namespace Core.Application
@@ -16,9 +14,7 @@ namespace Core.Application
         private RepositoryContext _repositoryContext;
         private IOwnerRepository _ownerRepository;
         private IAccountRepository _accountRepository;
-        private IValidationRepository _validationRepository;
-
-        private IRecordTypeRepository _recordTypeRepository;
+     
 
 
 
@@ -46,30 +42,7 @@ namespace Core.Application
             }
         }
          
-        public IValidationRepository Validation
-        {
-            get
-            {
-                if (_validationRepository == null)
-                {
-                    _validationRepository = new ValidationRepository(_repositoryContext);
-                }
-                return _validationRepository;
-            }
-        }
-
-        public IRecordTypeRepository RecordType {
-
-            get
-            {
-                if (_recordTypeRepository == null)
-                {
-                    _recordTypeRepository = new RecordTypeRepository(_repositoryContext);
-                }
-                return _recordTypeRepository;
-            }
-        }
-
+      
         public void Save()
         {
             _repositoryContext.SaveChanges();

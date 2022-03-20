@@ -26,7 +26,7 @@ namespace CORE.API.Controllers
         {
             try
             {
-                var owners = _repository.Owner.GetAll(); 
+                var owners = _repository.Owner.GetAllOwners(); 
                  
                 return Ok(owners);
             }
@@ -37,7 +37,7 @@ namespace CORE.API.Controllers
         }
 
         [HttpGet("{id}", Name = "OwnerById")]
-        public IActionResult GetOwnerById(Guid id)
+        public IActionResult GetOwnerById(int id)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace CORE.API.Controllers
         }
 
         [HttpGet("{id}/account")]
-        public IActionResult GetOwnerWithDetails(Guid id)
+        public IActionResult GetOwnerWithDetails(int id)
         {
             try
             {
@@ -67,11 +67,9 @@ namespace CORE.API.Controllers
                 { 
                     return NotFound();
                 }
-                else
-                { 
-                     
-                    return Ok(owner);
-                }
+               
+                   return new JsonResult(owner);
+
             }
             catch (Exception ex)
             { 
@@ -96,7 +94,7 @@ namespace CORE.API.Controllers
 
                 var ownerEntity = _mapper.Map<Owner>(owner);
 
-                _repository.Owner.Create(ownerEntity);
+                _repository.Owner.CreateOwner(ownerEntity);
                 _repository.Save();
                  
 
@@ -109,7 +107,7 @@ namespace CORE.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateOwner(Guid id, [FromBody]Owner owner)
+        public IActionResult UpdateOwner(int id, [FromBody]Owner owner)
         {
             try
             {
@@ -131,7 +129,7 @@ namespace CORE.API.Controllers
 
                 _mapper.Map(owner, ownerEntity);
 
-                _repository.Owner.Update(ownerEntity);
+                _repository.Owner.UpdateOwner(ownerEntity);
                 _repository.Save();
 
                 return NoContent();
@@ -143,7 +141,7 @@ namespace CORE.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteOwner(Guid id)
+        public IActionResult DeleteOwner(int id)
         {
             try
             {
